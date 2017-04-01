@@ -1,20 +1,21 @@
-﻿using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using IdentityServer4.Quickstart.UI;
+using IdentityServer4.Services;
+using IdentityServer4.Stores;
+using IdentityServerWithAspNetIdentity.Models;
+using IdentityServerWithAspNetIdentity.Models.AccountViewModels;
+using IdentityServerWithAspNetIdentity.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using IdentityServerWithAspNetIdentity.Models;
-using IdentityServerWithAspNetIdentity.Models.AccountViewModels;
-using IdentityServerWithAspNetIdentity.Services;
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
-using Microsoft.AspNetCore.Http.Authentication;
-using IdentityServer4.Quickstart.UI;
-using Microsoft.AspNetCore.Http;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace IdentityServerWithAspNetIdentity.Controllers
 {
@@ -225,9 +226,12 @@ namespace IdentityServerWithAspNetIdentity.Controllers
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
+            var isAPI = returnUrl != null && returnUrl == "/api";
+            var errors = new List<string>();
+
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -249,14 +253,52 @@ namespace IdentityServerWithAspNetIdentity.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    if (isAPI)
+                    {
+                        return Ok(new { Success = true } );
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
+                        
                 }
-                AddErrors(result);
+                if(isAPI)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        errors.Add(error.Description);
+                    }
+                }
+                else
+                {
+                    AddErrors(result);
+                }
+                
+            }
+            else
+            {
+                foreach (var modelState in ViewData.ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+                
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            if(isAPI)
+            {
+                return BadRequest(new { ErrorList = errors  });
+            }
+            else
+            {
+                return View(model);
+            }
         }
+
         
         //
         // POST: /Account/ExternalLoginConfirmation
