@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServerWithAspNetIdentity.Models.AccountViewModels
+namespace BrentEdwardsOnlineDotNetCore.ViewModels.AccountViewModels
 {
     public class RegisterViewModel
     {

@@ -1,12 +1,12 @@
 ﻿using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
-using IdentityServerWithAspNetIdentity.Models;
+using BrentEdwardsOnlineDotNetCore.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServerWithAspNetIdentity
+namespace BrentEdwardsOnlineDotNetCore
 {
     public class CustomProfileService : IProfileService
     {

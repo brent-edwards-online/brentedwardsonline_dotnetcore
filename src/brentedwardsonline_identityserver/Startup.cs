@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using IdentityServerWithAspNetIdentity.Data;
-using IdentityServerWithAspNetIdentity.Models;
-using IdentityServerWithAspNetIdentity.Services;
+using BrentEdwardsOnlineDotNetCore.Data;
+using BrentEdwardsOnlineDotNetCore.ViewModels;
+using BrentEdwardsOnlineDotNetCore.Services;
 
-namespace IdentityServerWithAspNetIdentity
+namespace BrentEdwardsOnlineDotNetCore
 {
     public class Startup
     {

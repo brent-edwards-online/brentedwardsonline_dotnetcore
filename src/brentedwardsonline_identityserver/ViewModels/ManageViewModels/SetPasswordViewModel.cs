@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServerWithAspNetIdentity.Models.ManageViewModels
+namespace BrentEdwardsOnlineDotNetCore.ViewModels.ManageViewModels
 {
     public class SetPasswordViewModel
     {

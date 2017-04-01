@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using IdentityServerWithAspNetIdentity.Data;
+using BrentEdwardsOnlineDotNetCore.Data;
 
-namespace IdentityServerWithAspNetIdentity.Data.Migrations
+namespace BrentEdwardsOnlineDotNetCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20170326044455_UserData")]
@@ -17,7 +17,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IdentityServerWithAspNetIdentity.Models.ApplicationUser", b =>
+            modelBuilder.Entity("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -192,7 +192,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("IdentityServerWithAspNetIdentity.Models.ApplicationUser")
+                    b.HasOne("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -200,7 +200,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("IdentityServerWithAspNetIdentity.Models.ApplicationUser")
+                    b.HasOne("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -213,7 +213,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IdentityServerWithAspNetIdentity.Models.ApplicationUser")
+                    b.HasOne("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

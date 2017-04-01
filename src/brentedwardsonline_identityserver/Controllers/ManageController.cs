@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using IdentityServerWithAspNetIdentity.Models;
-using IdentityServerWithAspNetIdentity.Models.ManageViewModels;
-using IdentityServerWithAspNetIdentity.Services;
+using BrentEdwardsOnlineDotNetCore.ViewModels;
+using BrentEdwardsOnlineDotNetCore.ViewModels.ManageViewModels;
+using BrentEdwardsOnlineDotNetCore.Services;
 using IdentityServer4.Quickstart.UI;
 
-namespace IdentityServerWithAspNetIdentity.Controllers
+namespace BrentEdwardsOnlineDotNetCore.Controllers
 {
     [Authorize]
     [SecurityHeaders]

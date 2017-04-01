@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace IdentityServerWithAspNetIdentity.Data.Migrations
+namespace BrentEdwardsOnlineDotNetCore.Data.Migrations
 {
     public partial class aspnetcore11 : Migration
     {

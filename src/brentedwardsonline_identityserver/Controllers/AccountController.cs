@@ -1,9 +1,9 @@
 ﻿using IdentityServer4.Quickstart.UI;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
-using IdentityServerWithAspNetIdentity.Models;
-using IdentityServerWithAspNetIdentity.Models.AccountViewModels;
-using IdentityServerWithAspNetIdentity.Services;
+using BrentEdwardsOnlineDotNetCore.ViewModels;
+using BrentEdwardsOnlineDotNetCore.ViewModels.AccountViewModels;
+using BrentEdwardsOnlineDotNetCore.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Authentication;
@@ -17,7 +17,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace IdentityServerWithAspNetIdentity.Controllers
+namespace BrentEdwardsOnlineDotNetCore.Controllers
 {
     [Authorize]
     [SecurityHeaders]

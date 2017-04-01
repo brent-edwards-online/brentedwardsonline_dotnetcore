@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServerWithAspNetIdentity.Models.AccountViewModels
+namespace BrentEdwardsOnlineDotNetCore.ViewModels.AccountViewModels
 {
-    public class ForgotPasswordViewModel
+    public class ExternalLoginConfirmationViewModel
     {
         [Required]
         [EmailAddress]

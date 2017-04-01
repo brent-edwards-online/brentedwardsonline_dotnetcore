@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace IdentityServerWithAspNetIdentity.Data.Migrations
+namespace BrentEdwardsOnlineDotNetCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
@@ -126,7 +126,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("IdentityServerWithAspNetIdentity.Models.ApplicationUser", b =>
+            modelBuilder.Entity("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -185,7 +185,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("IdentityServerWithAspNetIdentity.Models.ApplicationUser")
+                    b.HasOne("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -193,7 +193,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("IdentityServerWithAspNetIdentity.Models.ApplicationUser")
+                    b.HasOne("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -206,7 +206,7 @@ namespace IdentityServerWithAspNetIdentity.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IdentityServerWithAspNetIdentity.Models.ApplicationUser")
+                    b.HasOne("BrentEdwardsOnlineDotNetCore.ViewModels.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
