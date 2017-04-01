@@ -8,9 +8,10 @@ using BrentEdwardsOnlineDotNetCore.Entities;
 namespace BrentEdwardsOnlineDotNetCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170401021935_QualificationMigration")]
+    partial class QualificationMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -33,15 +34,13 @@ namespace BrentEdwardsOnlineDotNetCore.Migrations
 
                     b.Property<int>("QualificationProviderId");
 
-                    b.Property<int?>("QualificationProvidersId");
-
                     b.Property<int>("SortOrder");
 
                     b.Property<DateTime>("StartDate");
 
                     b.HasKey("QualificationId");
 
-                    b.HasIndex("QualificationProvidersId");
+                    b.HasIndex("QualificationProviderId");
 
                     b.ToTable("Qualifications");
                 });
@@ -66,7 +65,8 @@ namespace BrentEdwardsOnlineDotNetCore.Migrations
                 {
                     b.HasOne("BrentEdwardsOnlineDotNetCore.Entities.QualificationProvider", "Provider")
                         .WithMany("Qualifications")
-                        .HasForeignKey("QualificationProvidersId");
+                        .HasForeignKey("QualificationProviderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

@@ -7,7 +7,7 @@ using BrentEdwardsOnlineDotNetCore.Data;
 
 namespace BrentEdwardsOnlineDotNetCore.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ApplicationIdentityDbContext))]
     [Migration("20170326044455_UserData")]
     partial class UserData
     {

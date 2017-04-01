@@ -7,7 +7,7 @@ using BrentEdwardsOnlineDotNetCore.Data;
 
 namespace BrentEdwardsOnlineDotNetCore.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ApplicationIdentityDbContext))]
     [Migration("20161203201134_aspnetcore11")]
     partial class aspnetcore11
     {

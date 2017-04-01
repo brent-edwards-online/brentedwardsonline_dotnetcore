@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using BrentEdwardsOnlineDotNetCore.Entities;
+using BrentEdwardsOnlineDotNetCore.Data;
+using BrentEdwardsOnlineDotNetCore.Services;
+using BrentEdwardsOnlineDotNetCore.ViewModels;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using BrentEdwardsOnlineDotNetCore.Data;
-using BrentEdwardsOnlineDotNetCore.ViewModels;
-using BrentEdwardsOnlineDotNetCore.Services;
 
 namespace BrentEdwardsOnlineDotNetCore
 {
@@ -39,16 +41,22 @@ namespace BrentEdwardsOnlineDotNetCore
             });
 
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("AWSConnection")));
-
             /*
+            services.AddDbContext<ApplicationIdentityDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             */
 
+            services.AddDbContext<ApplicationIdentityDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AWSConnection")));
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AWSConnection")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
