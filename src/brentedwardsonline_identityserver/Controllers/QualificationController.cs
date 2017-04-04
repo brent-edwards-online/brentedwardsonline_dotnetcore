@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 namespace BrentEdwardsOnlineDotNetCore.Controllers
 {
     [Route("api/[controller]")]
-    public class QualificationController : Controller
+    [Authorize]
+    public class QualificationController : ControllerBase
     {
         private ApplicationDbContext _context; // = new ApplicationDbContext();
 
@@ -20,7 +21,6 @@ namespace BrentEdwardsOnlineDotNetCore.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
         public IEnumerable<Qualification> GetAll()
         {
             var result = this._context.Qualifications

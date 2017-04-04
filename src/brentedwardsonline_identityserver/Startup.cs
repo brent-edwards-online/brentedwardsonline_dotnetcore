@@ -79,8 +79,8 @@ namespace BrentEdwardsOnlineDotNetCore
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
+            loggerFactory.AddDebug(LogLevel.Trace);
+            
             app.UseCors("CorsPolicy");
 
             if (env.IsDevelopment())
@@ -94,10 +94,27 @@ namespace BrentEdwardsOnlineDotNetCore
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5000/",
+                //Authority = "http://angularspawebapi.azurewebsites.net",
+                AllowedScopes = { "api1" },
+
+                RequireHttpsMetadata = false
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
             app.UseStaticFiles();
 
             app.UseIdentity();
-            app.UseIdentityServer();
+
+            app.UseIdentityServer();         
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
             app.UseGoogleAuthentication(new GoogleOptions
@@ -108,12 +125,7 @@ namespace BrentEdwardsOnlineDotNetCore
                 ClientSecret = "HsnwJri_53zn7VcO1Fm7THBb",
             });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            
         }
     }
 }
